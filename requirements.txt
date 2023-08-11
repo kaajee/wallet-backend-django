@@ -1,0 +1,9 @@
+asgiref==3.7.2
+Django==4.2.4
+djangorestframework==3.14.0
+django-filter==23.2
+psycopg2==2.9.7
+
+# Testing
+factory_boy==3.3.0
+coverage==7.2.7
