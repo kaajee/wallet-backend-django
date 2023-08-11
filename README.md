@@ -138,3 +138,7 @@ Mini wallet API backend service with Django
    -----------------------------------------------------------
    TOTAL                                     449     16    96%
    ```
+### Postman
+<hr>
+
+You can try API with postman by import the [collection](Wallet.postman_collection.json) and [environment](Wallet.postman_environment.json) file

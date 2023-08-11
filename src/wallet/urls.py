@@ -7,6 +7,6 @@ urlpatterns = [
     path('wallet', api_wallet, name='api-wallet'),
     path('wallet/transactions', api_transactions, name='api-transactions'),
     path('wallet/deposits', api_deposit, name='api-deposit'),
-    path('wallet/withdraw', api_withdraw, name='api-withdraw'),
+    path('wallet/withdrawals', api_withdraw, name='api-withdraw'),
     path('reference-id', api_reference_id, name='api-reference-id'),
 ]
