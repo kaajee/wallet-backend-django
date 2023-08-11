@@ -51,21 +51,6 @@ Mini wallet API backend service with Django
 
 7. migrate all models to database.
 
-   for sending your models structure to database used command
-
-   ```shell
-   python3 manage.py migrate
-   ```
-
-   if you have any changes in your models.py, to push your model to database :
-
-   ```shell
-   python3 manage.py makemigrations
-   ```
-   ( this command will create a migrations version inside migrations/version folder)
-
-   then
-
    ```shell
    python3 manage.py migrate
    ```
