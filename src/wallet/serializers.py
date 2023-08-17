@@ -4,7 +4,7 @@ from src.wallet.models import WalletModel, TransactionModel
 
 
 class InitSerializer(serializers.Serializer):
-    customer_xid = serializers.CharField(required=True)
+    customer_xid = serializers.CharField(required=True, error_messages={'required': 'Missing data for required field.'})
 
 
 class WalletSerializer(serializers.ModelSerializer):
@@ -19,8 +19,8 @@ class WalletSerializer(serializers.ModelSerializer):
 
 
 class TransactionSerializer(serializers.Serializer):
-    amount = serializers.IntegerField(required=True)
-    reference_id = serializers.CharField(required=True)
+    amount = serializers.IntegerField(required=True, error_messages={'required': 'Missing data for required field.'})
+    reference_id = serializers.CharField(required=True, error_messages={'required': 'Missing data for required field.'})
 
 
 class DepositSerializer(serializers.ModelSerializer):

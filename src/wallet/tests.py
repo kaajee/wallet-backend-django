@@ -103,6 +103,16 @@ class TestWallet(APILiveServerTestCase):
         self.assertEqual(wallet.balance, 6000)
         self.assertEqual(TransactionModel.objects.count(), 1)
 
+        with self.subTest('Error - Missing amount field'):
+            response_error = self.client.post(
+                reverse('api-deposit'),
+                data={
+                    'reference_id': uuid.uuid4()
+                },
+                HTTP_AUTHORIZATION=f"Token {token}"
+            )
+            self.assertEqual(response_error.status_code, status.HTTP_400_BAD_REQUEST)
+
     def test_withdrawal(self):
         account, token = create_account()
         wallet = WalletFactory(account=account, status='enabled')
@@ -112,7 +122,7 @@ class TestWallet(APILiveServerTestCase):
                 reverse('api-withdraw'),
                 data={
                     'amount': 6000,
-                    'reference_id': self.reference_id
+                    'reference_id': uuid.uuid4()
                 },
                 HTTP_AUTHORIZATION=f"Token {token}"
             )
@@ -127,7 +137,7 @@ class TestWallet(APILiveServerTestCase):
                 reverse('api-withdraw'),
                 data={
                     'amount': 6000,
-                    'reference_id': self.reference_id
+                    'reference_id': uuid.uuid4()
                 },
                 HTTP_AUTHORIZATION=f"Token {token}"
             )
@@ -135,6 +145,16 @@ class TestWallet(APILiveServerTestCase):
             wallet = WalletModel.objects.get(account=account)
             self.assertEqual(wallet.balance, 4000)
             self.assertEqual(TransactionModel.objects.count(), 1)
+
+        with self.subTest('Error - Missing amount field'):
+            error_missing = self.client.post(
+                reverse('api-withdraw'),
+                data={
+                    'reference_id': uuid.uuid4()
+                },
+                HTTP_AUTHORIZATION=f"Token {token}"
+            )
+            self.assertEqual(error_missing.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_reference_id(self):
         account, token = create_account()

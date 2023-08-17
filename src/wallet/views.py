@@ -17,8 +17,8 @@ from src.wallet.decorators import require_wallet, require_reference_id
 def api_init(request):
     """This endpoint is used to create an account as well as getting the token for the other API endpoints."""
 
+    serializer = InitSerializer(data=request.data)
     try:
-        serializer = InitSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         xid = serializer.data.get('customer_xid')
 
@@ -35,16 +35,11 @@ def api_init(request):
         data = {
             "token": str(account.token)
         }
-
         return jsend_response(code=status.HTTP_201_CREATED, data=data, status='success')
 
     except serializers.ValidationError:
         data = {
-            "error": {
-                "customer_xid": [
-                    "Missing data for required field."
-                ]
-            }
+            "error": serializer.errors
         }
         return jsend_response(code=status.HTTP_400_BAD_REQUEST, data=data, status='fail')
 
@@ -103,28 +98,33 @@ def api_deposit(request):
     """ API for withdraw money from wallet"""
 
     serializer = TransactionSerializer(data=request.data)
-    serializer.is_valid(raise_exception=True)
-    serializer_data = serializer.data
+    try:
+        serializer.is_valid(raise_exception=True)
+        serializer_data = serializer.data
 
-    # Get Wallet Data
-    wallet = WalletModel.objects.filter(account=request.user).first()
+        # Get Wallet Data
+        wallet = WalletModel.objects.filter(account=request.user).first()
 
-    # Add balance
-    wallet.balance += serializer_data.get('amount', 0)
-    wallet.save()
+        # Add balance
+        wallet.balance += serializer_data.get('amount', 0)
+        wallet.save()
 
-    # Create transaction record
-    transaction = TransactionModel.objects.create(
-        amount=serializer_data.get('amount', 0),
-        transaction_type=TransactionModel.TypeSelector.deposit,
-        reference_id=serializer_data.get('reference_id'),
-        wallet=wallet,
-        created=timezone.now(),
-        created_by=request.user,
-    )
+        # Create transaction record
+        transaction = TransactionModel.objects.create(
+            amount=serializer_data.get('amount', 0),
+            transaction_type=TransactionModel.TypeSelector.deposit,
+            reference_id=serializer_data.get('reference_id'),
+            wallet=wallet,
+            created=timezone.now(),
+            created_by=request.user,
+        )
 
-    data = {'deposit': DepositSerializer(transaction).data}
-    return jsend_response(code=status.HTTP_201_CREATED, data=data, status='success')
+        data = {'deposit': DepositSerializer(transaction).data}
+        return jsend_response(code=status.HTTP_201_CREATED, data=data, status='success')
+
+    except serializers.ValidationError:
+        data = {"error": serializer.errors}
+        return jsend_response(code=status.HTTP_400_BAD_REQUEST, data=data, status='fail')
 
 
 @api_view(['POST'])
@@ -136,35 +136,40 @@ def api_withdraw(request):
 
     # Validate request body
     serializer = TransactionSerializer(data=request.data)
-    serializer.is_valid(raise_exception=True)
-    serializer_data = serializer.data
+    try:
+        serializer.is_valid(raise_exception=True)
+        serializer_data = serializer.data
 
-    # Get Wallet
-    wallet = WalletModel.objects.filter(account=request.user).first()
+        # Get Wallet
+        wallet = WalletModel.objects.filter(account=request.user).first()
 
-    # Validate balance
-    if wallet.balance < serializer_data.get('amount', 0):
-        data = {'error': 'Not enough balance'}
+        # Validate balance
+        if wallet.balance < serializer_data.get('amount', 0):
+            data = {'error': 'Not enough balance'}
+            return jsend_response(code=status.HTTP_400_BAD_REQUEST, data=data, status='fail')
+
+        # Reduce balance
+        wallet.balance -= serializer_data.get('amount', 0)
+        wallet.save()
+
+        # Create transaction record
+        transaction = TransactionModel.objects.create(
+            amount=serializer_data.get('amount', 0),
+            transaction_type=TransactionModel.TypeSelector.withdraw,
+            reference_id=serializer_data.get('reference_id'),
+            wallet=wallet,
+            created=timezone.now(),
+            created_by=request.user,
+        )
+
+        data = {
+            'withdrawal': WithdrawnSerializer(transaction).data
+        }
+        return jsend_response(code=status.HTTP_201_CREATED, data=data, status='success')
+
+    except serializers.ValidationError:
+        data = {"error": serializer.errors}
         return jsend_response(code=status.HTTP_400_BAD_REQUEST, data=data, status='fail')
-
-    # Reduce balance
-    wallet.balance -= serializer_data.get('amount', 0)
-    wallet.save()
-
-    # Create transaction record
-    transaction = TransactionModel.objects.create(
-        amount=serializer_data.get('amount', 0),
-        transaction_type=TransactionModel.TypeSelector.withdraw,
-        reference_id=serializer_data.get('reference_id'),
-        wallet=wallet,
-        created=timezone.now(),
-        created_by=request.user,
-    )
-
-    data = {
-        'withdrawal': WithdrawnSerializer(transaction).data
-    }
-    return jsend_response(code=status.HTTP_201_CREATED, data=data, status='success')
 
 
 @api_view(['GET'])

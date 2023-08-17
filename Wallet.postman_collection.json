@@ -44,7 +44,83 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "SUCCESS",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "customer_xid",
+									"value": "ea0212d3-abd6-406f-8c67-868e814a2436",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/init",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"init"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 17 Aug 2023 12:56:47 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.10.12"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "80"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"token\": \"a1883b5546b88ef57c9ebc5d6b29f0c4ddd9cff4\"\n    },\n    \"status\": \"success\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Enable Wallet",
@@ -72,7 +148,150 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "SUCCESS",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/wallet",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wallet"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 17 Aug 2023 12:56:31 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.10.12"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, OPTIONS, PATCH"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "211"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"wallet\": {\n            \"id\": \"0c987d6d-9169-4596-8d96-6daefbd639db\",\n            \"owned_by\": \"d4724267-6438-4ee0-a81f-ec5c212a699b\",\n            \"status\": \"enabled\",\n            \"enabled_at\": \"2023-08-11T10:58:04.091005Z\",\n            \"balance\": 4000\n        }\n    },\n    \"status\": \"success\"\n}"
+				},
+				{
+					"name": "WALLET ALREADY ENABLED",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/wallet",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wallet"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 17 Aug 2023 12:52:50 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.10.12"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, OPTIONS, PATCH"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "52"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"error\": \"Already enabled\"\n    },\n    \"status\": \"fail\"\n}"
+				}
+			]
 		},
 		{
 			"name": "VIew Wallet",
@@ -97,7 +316,79 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "SUCCESS",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/wallet",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wallet"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 17 Aug 2023 12:54:23 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.10.12"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, OPTIONS, PATCH"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "211"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"wallet\": {\n            \"id\": \"0c987d6d-9169-4596-8d96-6daefbd639db\",\n            \"owned_by\": \"d4724267-6438-4ee0-a81f-ec5c212a699b\",\n            \"status\": \"enabled\",\n            \"enabled_at\": \"2023-08-11T10:58:04.091005Z\",\n            \"balance\": 4000\n        }\n    },\n    \"status\": \"success\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Get Reference Id",
@@ -128,10 +419,93 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "SUCCESS",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/reference-id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reference-id"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 17 Aug 2023 12:55:22 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.10.12"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "83"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"reference_id\": \"c25564a6-5c6e-4ed5-9f35-5aeaed869561\"\n    },\n    \"status\": \"success\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Deposit Money",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.sendRequest({",
+							"    url: `${pm.environment.get('base_url')}/api/v1/reference-id`,",
+							"    method: 'GET',",
+							"    header: {'Accept': 'application/json', 'Content-Type': 'application/json'}",
+							"}, function (err, res) {",
+							"    pm.environment.set(\"reference_id\", res.json().data.reference_id);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -169,10 +543,115 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "SUCCESS",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "amount",
+									"value": "6000",
+									"type": "text"
+								},
+								{
+									"key": "reference_id",
+									"value": "{{reference_id}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/wallet/deposits",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wallet",
+								"deposits"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 17 Aug 2023 12:53:24 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.10.12"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "276"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"deposit\": {\n            \"id\": \"994e7fc8-8870-4aa3-9002-28103622b0d2\",\n            \"deposited_by\": \"d4724267-6438-4ee0-a81f-ec5c212a699b\",\n            \"status\": \"success\",\n            \"deposited_at\": \"2023-08-17T12:53:24.303697+00:00\",\n            \"amount\": 6000,\n            \"reference_id\": \"279639fa-20a4-4b22-8714-83d72d305557\"\n        }\n    },\n    \"status\": \"success\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Withdrawn Money",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.sendRequest({",
+							"    url: `${pm.environment.get('base_url')}/api/v1/reference-id`,",
+							"    method: 'GET',",
+							"    header: {'Accept': 'application/json', 'Content-Type': 'application/json'}",
+							"}, function (err, res) {",
+							"    pm.environment.set(\"reference_id\", res.json().data.reference_id);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -210,7 +689,95 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "SUCCESS",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "amount",
+									"value": "4000",
+									"type": "text"
+								},
+								{
+									"key": "reference_id",
+									"value": "{{reference_id}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/wallet/withdrawals",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wallet",
+								"withdrawals"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 17 Aug 2023 12:54:18 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.10.12"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "279"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"withdrawal\": {\n            \"id\": \"a0fe8ce9-a829-4b38-8aa5-d9bf30914639\",\n            \"withdrawn_by\": \"d4724267-6438-4ee0-a81f-ec5c212a699b\",\n            \"status\": \"success\",\n            \"withdrawn_at\": \"2023-08-17T12:54:18.979500+00:00\",\n            \"amount\": 4000,\n            \"reference_id\": \"73fca982-bfca-4a6a-afd4-4869500defa4\"\n        }\n    },\n    \"status\": \"success\"\n}"
+				}
+			]
 		},
 		{
 			"name": "View Transactions",
@@ -236,7 +803,80 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "SUCCESS",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/wallet/transactions",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wallet",
+								"transactions"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 17 Aug 2023 12:55:36 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.10.12"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "852"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"transactions\": [\n            {\n                \"id\": \"5db032b6-0c8e-4bb0-b26e-6f89306dc253\",\n                \"status\": \"success\",\n                \"transacted_at\": \"2023-08-11T11:08:59.729487+00:00\",\n                \"type\": \"deposit\",\n                \"amount\": 6000,\n                \"reference_id\": \"19214354-71a8-49bf-b012-944b3304b9cc\"\n            },\n            {\n                \"id\": \"dde979ad-b4bf-44d5-ae88-9c4de8207ea0\",\n                \"status\": \"success\",\n                \"transacted_at\": \"2023-08-11T11:11:30.775769+00:00\",\n                \"type\": \"withdraw\",\n                \"amount\": 4000,\n                \"reference_id\": \"2fd5aa59-6ea7-4638-bfca-c4dbd0440d20\"\n            },\n            {\n                \"id\": \"994e7fc8-8870-4aa3-9002-28103622b0d2\",\n                \"status\": \"success\",\n                \"transacted_at\": \"2023-08-17T12:53:24.303697+00:00\",\n                \"type\": \"deposit\",\n                \"amount\": 6000,\n                \"reference_id\": \"279639fa-20a4-4b22-8714-83d72d305557\"\n            },\n            {\n                \"id\": \"a0fe8ce9-a829-4b38-8aa5-d9bf30914639\",\n                \"status\": \"success\",\n                \"transacted_at\": \"2023-08-17T12:54:18.979500+00:00\",\n                \"type\": \"withdraw\",\n                \"amount\": 4000,\n                \"reference_id\": \"73fca982-bfca-4a6a-afd4-4869500defa4\"\n            }\n        ]\n    },\n    \"status\": \"success\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Disable Wallet",
@@ -261,7 +901,150 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "SUCCESS DISBALED WALLET",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/wallet",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wallet"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 17 Aug 2023 12:55:54 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.10.12"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, OPTIONS, PATCH"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "212"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"wallet\": {\n            \"id\": \"0c987d6d-9169-4596-8d96-6daefbd639db\",\n            \"owned_by\": \"d4724267-6438-4ee0-a81f-ec5c212a699b\",\n            \"status\": \"disabled\",\n            \"enabled_at\": \"2023-08-11T10:58:04.091005Z\",\n            \"balance\": 4000\n        }\n    },\n    \"status\": \"success\"\n}"
+				},
+				{
+					"name": "WALLET ALREADY DISABLED",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/wallet",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wallet"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 17 Aug 2023 12:56:11 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.10.12"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, OPTIONS, PATCH"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "53"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"error\": \"Already disabled\"\n    },\n    \"status\": \"fail\"\n}"
+				}
+			]
 		}
 	]
 }
